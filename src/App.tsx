@@ -1,12 +1,35 @@
-import { Provider } from './Context';
+import { Provider } from './context/Context';
+
 import Display from './Display';
 import Manipulator from './Manipulator';
+import TopMenu from './components/topMenu';
+import { VStack, useColorModeValue, Flex } from '@chakra-ui/react';
 
 function App() {
+	const bgColor = useColorModeValue('gray.100', 'gray.900');
+	const secondaryBgColor = useColorModeValue('gray.200', 'gray.800');
+
 	return (
 		<Provider>
-			<Display />
-			<Manipulator />
+			<VStack w="full" h="full" bg={bgColor} gap={15}>
+				<Flex py={4} w="full" bg={secondaryBgColor} justifyContent="center">
+					<Flex
+						maxWidth={800}
+						w="full"
+						flexDirection="row"
+						justifyContent="space-between"
+						alignItems="center"
+					>
+						<TopMenu />
+					</Flex>
+				</Flex>
+				<Flex w="full" h="full" justifyContent="center">
+					<Flex w="full" maxWidth={800} flexDirection="column" gap={15}>
+						<Display secondaryBgColor={secondaryBgColor} />
+						<Manipulator secondaryBgColor={secondaryBgColor} />
+					</Flex>
+				</Flex>
+			</VStack>
 		</Provider>
 	);
 }

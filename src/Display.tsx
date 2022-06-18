@@ -1,10 +1,22 @@
 import React from 'react';
-import { ContextUse } from './Context';
+import { ContextUse } from './context/Context';
+import { Flex, Heading, Text } from '@chakra-ui/react';
 
-const Display = () => {
-	const { state, commands } = ContextUse();
+const Display = ({ secondaryBgColor }: { secondaryBgColor: string }) => {
+	const { state } = ContextUse();
 
-	return <p>Name: {state.name}</p>;
+	return (
+		<Flex
+			bg={secondaryBgColor}
+			p={50}
+			flexDirection="column"
+			gap={15}
+			borderRadius={12}
+		>
+			<Heading>Display</Heading>
+			<Text>Name: {state.name}</Text>
+		</Flex>
+	);
 };
 
 export default Display;
