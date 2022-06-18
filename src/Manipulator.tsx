@@ -12,7 +12,6 @@ import {
 	FormHelperText,
 } from '@chakra-ui/react';
 import { ColorModeProvider } from './theme';
-import { getSpaceUntilMaxLength } from '@testing-library/user-event/dist/utils';
 
 const Manipulator = () => {
 	const { secondaryBgColor } = ColorModeProvider();
