@@ -2,6 +2,7 @@ import { State } from './Context';
 
 //Defines Action types to manipulate the state
 export enum Action {
+	SET_IMAGE,
 	SET_NAME,
 	SET_SURNAME,
 	SET_AGE,
@@ -25,6 +26,10 @@ export type ActionType =
 	| {
 			type: Action.SET_LOCATION;
 			location: string;
+	  }
+	| {
+			type: Action.SET_IMAGE;
+			image: string;
 	  };
 
 //Reduces commands to manipulate the state
@@ -52,6 +57,12 @@ export const reducer = (state: State, action: ActionType) => {
 			return {
 				...state,
 				location: action.location,
+			};
+		}
+		case Action.SET_IMAGE: {
+			return {
+				...state,
+				image: action.image,
 			};
 		}
 	}

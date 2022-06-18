@@ -9,6 +9,7 @@ interface ContextInterface {
 
 //Defines structure and types for the state
 export interface State {
+	image: string;
 	name: string;
 	surname: string;
 	age: number;
@@ -21,10 +22,13 @@ interface Commands {
 	setSurName: (surname: string) => void;
 	setAge: (age: number) => void;
 	setLocation: (location: string) => void;
+	setImage: (image: string) => void;
 }
 
 //Defines the initial state
 const initialState: State = {
+	image:
+		'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCKfvEBXt0DCovOTM_JLgtUgYQTcPW6WnBxyJdNJH4C1Sam76y5FSm4gJFSgvX8uRLyHs&usqp=CAU',
 	name: '',
 	surname: '',
 	age: 0,
@@ -39,6 +43,7 @@ const Context = React.createContext<ContextInterface>({
 		setSurName: () => {},
 		setAge: () => {},
 		setLocation: () => {},
+		setImage: () => {},
 	},
 });
 
@@ -77,11 +82,19 @@ export const Provider = (props: { children: ReactNode }) => {
 		});
 	};
 
+	const setImage = (image: string) => {
+		dispatch({
+			type: Action.SET_IMAGE,
+			image,
+		});
+	};
+
 	const commands: Commands = {
 		setName,
 		setSurName,
 		setAge,
 		setLocation,
+		setImage,
 	};
 
 	return (

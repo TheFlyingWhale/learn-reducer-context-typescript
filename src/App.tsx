@@ -10,7 +10,7 @@ function App() {
 
 	return (
 		<Provider>
-			<VStack w="full" h="full" bg={bgColor} gap={15}>
+			<VStack w="full" h="full" bg={bgColor}>
 				<Flex py={4} w="full" bg={secondaryBgColor} justifyContent="center">
 					<Flex
 						maxWidth={800}
@@ -22,8 +22,8 @@ function App() {
 						<TopMenu />
 					</Flex>
 				</Flex>
-				<Flex w="full" h="full" justifyContent="center">
-					<Flex w="full" maxWidth={800} flexDirection="column" gap={15}>
+				<Flex w="full" h="full" overflow="scroll" justifyContent="center">
+					<Flex w="full" maxWidth={800} flexDirection="column" gap={15} py={25}>
 						<Display />
 						<Manipulator />
 					</Flex>
