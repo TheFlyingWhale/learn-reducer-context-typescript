@@ -1,5 +1,6 @@
 import { State } from './Context';
 
+//Defines Action types to manipulate the state
 export enum Action {
 	SET_NAME,
 	SET_SURNAME,
@@ -7,6 +8,7 @@ export enum Action {
 	SET_LOCATION,
 }
 
+//Defines structure and types for the actions
 export type ActionType =
 	| {
 			type: Action.SET_NAME;
@@ -25,6 +27,7 @@ export type ActionType =
 			location: string;
 	  };
 
+//Reduces commands to manipulate the state
 export const reducer = (state: State, action: ActionType) => {
 	switch (action.type) {
 		case Action.SET_NAME: {

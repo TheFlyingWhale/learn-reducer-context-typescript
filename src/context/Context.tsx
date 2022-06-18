@@ -1,11 +1,13 @@
 import React, { ReactNode } from 'react';
 import { reducer, Action } from './Reducer';
 
+//Defines structure and types for the context
 interface ContextInterface {
 	state: State;
 	commands: Commands;
 }
 
+//Defines structure and types for the state
 export interface State {
 	name: string;
 	surname: string;
@@ -13,6 +15,7 @@ export interface State {
 	location: string;
 }
 
+//Defines commands to manipulate the state
 interface Commands {
 	setName: (name: string) => void;
 	setSurName: (surname: string) => void;
@@ -20,6 +23,7 @@ interface Commands {
 	setLocation: (location: string) => void;
 }
 
+//Defines the initial state
 const initialState: State = {
 	name: '',
 	surname: '',
@@ -27,6 +31,7 @@ const initialState: State = {
 	location: '',
 };
 
+//Creates the context
 const Context = React.createContext<ContextInterface>({
 	state: initialState,
 	commands: {
@@ -37,8 +42,10 @@ const Context = React.createContext<ContextInterface>({
 	},
 });
 
+//Function to retrieve state or commands from the context
 export const ContextUse = () => React.useContext(Context);
 
+//Provides the context with state and commands
 export const Provider = (props: { children: ReactNode }) => {
 	const [state, dispatch] = React.useReducer(reducer, initialState);
 
