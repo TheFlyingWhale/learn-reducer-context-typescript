@@ -1,9 +1,12 @@
 import React from 'react';
 import { ContextUse } from './context/Context';
 import { Flex, Heading, Text } from '@chakra-ui/react';
+import { ColorModeProvider } from './theme';
 
-const Display = ({ secondaryBgColor }: { secondaryBgColor: string }) => {
+const Display = () => {
 	const { state } = ContextUse();
+	const { name, surname, age, location } = state;
+	const { secondaryBgColor } = ColorModeProvider();
 
 	return (
 		<Flex
@@ -13,8 +16,11 @@ const Display = ({ secondaryBgColor }: { secondaryBgColor: string }) => {
 			gap={15}
 			borderRadius={12}
 		>
-			<Heading>Display</Heading>
-			<Text>Name: {state.name}</Text>
+			<Heading>Profile</Heading>
+			<Text>Name: {name}</Text>
+			<Text>Surname: {surname}</Text>
+			<Text>Age: {age === 0 ? '' : age}</Text>
+			<Text>Location: {location}</Text>
 		</Flex>
 	);
 };

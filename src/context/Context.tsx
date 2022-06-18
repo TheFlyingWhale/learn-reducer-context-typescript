@@ -8,20 +8,32 @@ interface ContextInterface {
 
 export interface State {
 	name: string;
+	surname: string;
+	age: number;
+	location: string;
 }
 
 interface Commands {
 	setName: (name: string) => void;
+	setSurName: (surname: string) => void;
+	setAge: (age: number) => void;
+	setLocation: (location: string) => void;
 }
 
-const initialState = {
-	name: 'Ole',
+const initialState: State = {
+	name: '',
+	surname: '',
+	age: 0,
+	location: '',
 };
 
 const Context = React.createContext<ContextInterface>({
 	state: initialState,
 	commands: {
 		setName: () => {},
+		setSurName: () => {},
+		setAge: () => {},
+		setLocation: () => {},
 	},
 });
 
@@ -37,8 +49,32 @@ export const Provider = (props: { children: ReactNode }) => {
 		});
 	};
 
+	const setSurName = (surname: string) => {
+		dispatch({
+			type: Action.SET_SURNAME,
+			surname,
+		});
+	};
+
+	const setAge = (age: number) => {
+		dispatch({
+			type: Action.SET_AGE,
+			age,
+		});
+	};
+
+	const setLocation = (location: string) => {
+		dispatch({
+			type: Action.SET_LOCATION,
+			location,
+		});
+	};
+
 	const commands: Commands = {
 		setName,
+		setSurName,
+		setAge,
+		setLocation,
 	};
 
 	return (
