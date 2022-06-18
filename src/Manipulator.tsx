@@ -18,7 +18,6 @@ const Manipulator = () => {
 
 	const {
 		commands: { setName, setSurName, setAge, setLocation },
-		state: { name, surname, age, location },
 	} = ContextUse();
 
 	const handleSubmit = (e: React.SyntheticEvent) => {
