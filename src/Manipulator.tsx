@@ -8,8 +8,8 @@ import {
 	VStack,
 	Input,
 	FormLabel,
-	FormControl,
 	FormHelperText,
+	FormControl,
 } from '@chakra-ui/react';
 import { ColorModeProvider } from './theme';
 
@@ -53,9 +53,9 @@ const Manipulator = () => {
 		>
 			<Heading>Let us get to know you</Heading>
 			<form onSubmit={handleSubmit}>
-				<FormControl>
-					<VStack gap={30}>
-						<HStack w="full" gap={15}>
+				<VStack gap={30}>
+					<HStack w="full" gap={15}>
+						<FormControl>
 							<FormItem
 								label="Image"
 								type="file"
@@ -63,8 +63,10 @@ const Manipulator = () => {
 								helperText="Please upload a valid image file. Max file size: 1MB"
 								inputStyle={{ padding: 0, borderRadius: 0 }}
 							/>
-						</HStack>
-						<HStack w="full" gap={15}>
+						</FormControl>
+					</HStack>
+					<HStack w="full" gap={15}>
+						<FormControl>
 							<FormItem
 								label="Name:"
 								placeholder="John"
@@ -72,6 +74,8 @@ const Manipulator = () => {
 								name="name"
 								helperText="Whats your name?"
 							/>
+						</FormControl>
+						<FormControl>
 							<FormItem
 								label="Surname:"
 								placeholder="Doe"
@@ -79,8 +83,10 @@ const Manipulator = () => {
 								name="surname"
 								helperText="Whats your surname?"
 							/>
-						</HStack>
-						<HStack w="full" gap={15}>
+						</FormControl>
+					</HStack>
+					<HStack w="full" gap={15}>
+						<FormControl>
 							<FormItem
 								label="Age:"
 								placeholder="23"
@@ -90,6 +96,8 @@ const Manipulator = () => {
 								min={0}
 								max={120}
 							/>
+						</FormControl>
+						<FormControl>
 							<FormItem
 								label="Location:"
 								placeholder="London"
@@ -97,14 +105,14 @@ const Manipulator = () => {
 								name="location"
 								helperText="Where do you live?"
 							/>
-						</HStack>
-						<HStack w="full">
-							<Button w="full" colorScheme="green" type="submit">
-								Submit
-							</Button>
-						</HStack>
-					</VStack>
-				</FormControl>
+						</FormControl>
+					</HStack>
+					<HStack w="full">
+						<Button w="full" size="lg" colorScheme="green" type="submit">
+							Submit
+						</Button>
+					</HStack>
+				</VStack>
 			</form>
 		</Flex>
 	);
@@ -152,6 +160,7 @@ const FormItem = ({
 				min={min}
 				max={max}
 				style={{ ...inputStyle }}
+				size="lg"
 			/>
 			<FormHelperText>{helperText}</FormHelperText>
 		</FormLabel>
