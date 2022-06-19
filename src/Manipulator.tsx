@@ -193,12 +193,9 @@ const FriendsManipulator = () => {
 
     const {
         commands: { addFriend },
-        state: state,
     } = ContextUse();
 
     const handleSubmit = (e: React.SyntheticEvent) => {
-        console.log(state);
-        console.log("friend");
         e.preventDefault();
         const target = e.target as typeof e.target & {
             name: { value: string };

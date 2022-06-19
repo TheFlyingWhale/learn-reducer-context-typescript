@@ -110,7 +110,7 @@ const UserDisplay = ({
 
 const FriendsDisplay = ({ friends }: { friends: Friend[] }) => {
     const { secondaryBgColor } = ColorModeProvider();
-    if (friends.length !== 0) {
+    if (friends.length > 1) {
         return (
             <Flex
                 bg={secondaryBgColor}
