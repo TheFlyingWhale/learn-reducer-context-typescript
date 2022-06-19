@@ -10,6 +10,7 @@ import {
     FormLabel,
     FormHelperText,
     FormControl,
+    Select,
 } from "@chakra-ui/react";
 import { ColorModeProvider } from "./theme";
 import { Relation } from "./context/Context";
@@ -57,16 +58,28 @@ const FormItem = ({
             }}
         >
             {label}
-            <Input
-                variant="outlined"
-                placeholder={placeholder}
-                type={type}
-                name={name}
-                min={min}
-                max={max}
-                style={{ ...inputStyle }}
-                size="lg"
-            />
+            {type !== "select" ? (
+                <Input
+                    variant="outlined"
+                    placeholder={placeholder}
+                    type={type}
+                    name={name}
+                    min={min}
+                    max={max}
+                    style={{ ...inputStyle }}
+                    size="lg"
+                />
+            ) : (
+                <Select
+                    variant="outlined"
+                    size="lg"
+                    name={name}
+                    placeholder={placeholder}
+                >
+                    <option value="friend">Friend</option>
+                    <option value="enemy">Enemy</option>
+                </Select>
+            )}
             <FormHelperText>{helperText}</FormHelperText>
         </FormLabel>
     );
@@ -276,8 +289,8 @@ const FriendsManipulator = () => {
                         <FormControl>
                             <FormItem
                                 label="Relation:"
-                                placeholder="London"
-                                type="text"
+                                placeholder="- Select option -"
+                                type="select"
                                 name="relation"
                                 helperText="Whats your relation?"
                             />

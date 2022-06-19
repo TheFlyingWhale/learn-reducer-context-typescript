@@ -54,10 +54,12 @@ const DisplayItem = ({
     alt?: string;
 }) => {
     return (
-        <VStack p={0} m={0} alignItems="start">
-            <Heading as="h3" size="sm">
-                {title}
-            </Heading>
+        <VStack p={0} gap={0} alignItems="start">
+            {title !== "Image:" && (
+                <Heading as="h3" size="sm">
+                    {title}
+                </Heading>
+            )}
             {image ? (
                 <Image
                     src={image}
@@ -90,6 +92,7 @@ const UserDisplay = ({
         <Grid
             m={0}
             p={0}
+            gap={25}
             templateColumns="repeat(3, 1fr)"
             templateRows="repeat(2, 1fr)"
         >
