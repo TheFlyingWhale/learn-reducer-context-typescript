@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContextUse } from './context/Context';
+import { useContext } from './context/Context';
 import {
 	Flex,
 	Heading,
@@ -10,10 +10,9 @@ import {
 	GridItem,
 } from '@chakra-ui/react';
 import { ColorModeProvider } from './theme';
-import { Friend } from './context/Context';
 
 const Display = () => {
-	const { state } = ContextUse();
+	const { state } = useContext();
 	const { name, surname, age, location, image } = state.user;
 	const { secondaryBgColor } = ColorModeProvider();
 
@@ -107,7 +106,17 @@ const UserDisplay = ({
 	);
 };
 
-const FriendsDisplay = ({ friends }: { friends: Friend[] }) => {
+const FriendsDisplay = ({
+	friends,
+}: {
+	friends: {
+		image: string;
+		name: string;
+		surname: string;
+		age: number;
+		relation: 'friend' | 'enemy' | undefined;
+	}[];
+}) => {
 	const { secondaryBgColor } = ColorModeProvider();
 	if (friends.length !== 0) {
 		return (
@@ -138,7 +147,19 @@ const FriendsDisplay = ({ friends }: { friends: Friend[] }) => {
 	}
 };
 
-const FriendItem = ({ image, name, surname, age, relation }: Friend) => {
+const FriendItem = ({
+	image,
+	name,
+	surname,
+	age,
+	relation,
+}: {
+	image: string;
+	name: string;
+	surname: string;
+	age: number;
+	relation: 'friend' | 'enemy' | undefined;
+}) => {
 	return (
 		<Grid
 			w="full"

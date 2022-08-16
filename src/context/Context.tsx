@@ -1,48 +1,23 @@
 import React, { ReactNode } from 'react';
 import { reducer, Action } from './Reducer';
 
-//Defines structure and types for the context
-interface ContextInterface {
-	state: State;
-	commands: Commands;
-}
-
-//Defines structure and types for user portion of the state
-export interface User {
-	image: string;
-	name: string;
-	surname: string;
-	age: number;
-	location: string;
-}
-
-export type Relation = 'friend' | 'enemy' | undefined;
-
-export interface Friend {
-	image: string;
-	name: string;
-	surname: string;
-	age: number;
-	relation: Relation;
-}
-
-//Defines structure and types for the state
 export interface State {
-	user: User;
-	friends: Friend[];
+	user: {
+		image: string;
+		name: string;
+		surname: string;
+		age: number;
+		location: string;
+	};
+	friends: {
+		image: string;
+		name: string;
+		surname: string;
+		age: number;
+		relation: 'friend' | 'enemy' | undefined;
+	}[];
 }
 
-//Defines commands to manipulate the state
-interface Commands {
-	setUserName: (name: string) => void;
-	setUserSurName: (surname: string) => void;
-	setUserAge: (age: number) => void;
-	setUserLocation: (location: string) => void;
-	setUserImage: (image: string) => void;
-	addFriend: (friend: Friend) => void;
-}
-
-//Defines the initial state
 const initialState: State = {
 	user: {
 		image:
@@ -55,7 +30,27 @@ const initialState: State = {
 	friends: [],
 };
 
-//Creates the context
+//Defines commands to manipulate the state
+interface Commands {
+	setUserName: (name: string) => void;
+	setUserSurName: (surname: string) => void;
+	setUserAge: (age: number) => void;
+	setUserLocation: (location: string) => void;
+	setUserImage: (image: string) => void;
+	addFriend: (friend: {
+		image: string;
+		name: string;
+		surname: string;
+		age: number;
+		relation: 'friend' | 'enemy' | undefined;
+	}) => void;
+}
+
+interface ContextInterface {
+	state: State;
+	commands: Commands;
+}
+
 const Context = React.createContext<ContextInterface>({
 	state: initialState,
 	commands: {
@@ -68,10 +63,8 @@ const Context = React.createContext<ContextInterface>({
 	},
 });
 
-//Function to retrieve state or commands from the context
-export const ContextUse = () => React.useContext(Context);
+export const useContext = () => React.useContext(Context);
 
-//Provides the context with state and commands
 export const Provider = (props: { children: ReactNode }) => {
 	const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -110,7 +103,13 @@ export const Provider = (props: { children: ReactNode }) => {
 		});
 	};
 
-	const addFriend = (friend: Friend) => {
+	const addFriend = (friend: {
+		image: string;
+		name: string;
+		surname: string;
+		age: number;
+		relation: 'friend' | 'enemy' | undefined;
+	}) => {
 		dispatch({
 			type: Action.ADD_FRIEND,
 			friend,

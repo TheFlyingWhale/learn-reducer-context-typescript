@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContextUse } from './context/Context';
+import { useContext } from './context/Context';
 import {
 	Flex,
 	Heading,
@@ -13,7 +13,6 @@ import {
 	Select,
 } from '@chakra-ui/react';
 import { ColorModeProvider } from './theme';
-import { Relation } from './context/Context';
 
 const Manipulator = () => {
 	return (
@@ -88,16 +87,14 @@ const FormItem = ({
 
 const UserManipulator = () => {
 	const { secondaryBgColor } = ColorModeProvider();
-
+	const { state, commands } = useContext();
 	const {
-		commands: {
-			setUserName,
-			setUserSurName,
-			setUserAge,
-			setUserLocation,
-			setUserImage,
-		},
-	} = ContextUse();
+		setUserName,
+		setUserSurName,
+		setUserAge,
+		setUserLocation,
+		setUserImage,
+	} = commands;
 
 	const handleSubmit = (e: React.SyntheticEvent) => {
 		e.preventDefault();
@@ -203,7 +200,7 @@ const FriendsManipulator = () => {
 
 	const {
 		commands: { addFriend },
-	} = ContextUse();
+	} = useContext();
 
 	const handleSubmit = (e: React.SyntheticEvent) => {
 		e.preventDefault();
@@ -211,7 +208,7 @@ const FriendsManipulator = () => {
 			name: { value: string };
 			surname: { value: string };
 			age: { value: number };
-			relation: { value: Relation };
+			relation: { value: 'friend' | 'enemy' | undefined };
 			image: { files: Blob[] };
 		};
 		const name = target.name.value;
